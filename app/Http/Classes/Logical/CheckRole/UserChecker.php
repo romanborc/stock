@@ -11,6 +11,10 @@ class UserChecker
       $this->model = $model;
   }
 
+  /**
+   * Checks if the user has a role by its name.
+   * @param  array  $name
+   */
   public function currentUserHasRole($name)
   {
     if(!$this->model->roles()->first()) {

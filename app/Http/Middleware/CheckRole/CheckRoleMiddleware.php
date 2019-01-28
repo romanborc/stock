@@ -8,7 +8,12 @@ class CheckRoleMiddleware
 {
   const DELIMITER = '|';
 
-
+  /**
+   * Check if the request has authorization to continue.
+   *
+   * @param  string $type
+   * @param  string $roles
+   */
   protected function authorization($type, $roles, $guard = null) 
   {
     $method = $type == 'role' ? 'hasRole' : null;

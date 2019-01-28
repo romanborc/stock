@@ -11,6 +11,7 @@ class CheckRole extends CheckRoleMiddleware
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param  string $roles
      * @return mixed
      */
     public function handle($request, Closure $next, $roles)
