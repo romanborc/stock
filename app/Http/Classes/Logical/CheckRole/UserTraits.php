@@ -6,7 +6,7 @@ trait UserTraits
 {
 
   /**
-   * One-to-One relations with Role.
+   * One-to-Many relations with Role.
    *
    */
   public function roles()
