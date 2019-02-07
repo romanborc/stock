@@ -15,6 +15,6 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::middleware('role:superadministrator|administrator')->group(function() {
-    Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware('role:superadministrator|administarator')->group(function() {
+    Route::get('/price', 'Price\PriceController@index')->name('price');
 });

@@ -8,6 +8,16 @@
 require('./bootstrap');
 require('./sidebar');
 
+
+import Http from './services/http.js'; 
+import PriceView from './views/priceView.js';
+import PriceCategoryController from './controllers/priceCategoryController.js';
+
+const http = new Http();
+const priceView = new PriceView();
+const priceCategoryController = new PriceCategoryController('http://stock' ,http, priceView);
+
+
 // window.Vue = require('vue');
 
 /**

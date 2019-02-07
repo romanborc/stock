@@ -7,6 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="api_token" content="{{ Auth::user()->api_token }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -30,6 +31,11 @@
         <main class="page-content">
             @yield('content')
         </main>
+        
+        <!-- Include Modal -->
+        @include('_includes.modals.price_category')
+        @include('_includes.modals.product')
+
     </div>
 </body>
 

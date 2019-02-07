@@ -1,7 +1,7 @@
 <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
         <div class="sidebar-brand">
-            <a href="#">STOCK</a>
+            <a href="{{ route('home') }}">STOCK</a>
             <div id="close-sidebar">
                 <i class="fas fa-angle-double-left"></i>
             </div>
@@ -21,6 +21,40 @@
             <ul>
                 <li class="header-menu">
                     <span>Панель управления</span>
+                </li>
+
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="fas fa-users"></i>
+                        <span>Клиенты</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a href="#">Список клиентов</a>
+                            </li>
+                            <li>
+                                <a href="#">Добавить нового клиента</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                @if(Auth::user()->hasRole('superadministrator'))
+                <li class="header-menu">
+                    <span>Администратирование</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Управление менеджерами</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/price">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <span>Прайс</span>
+                    </a>
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
@@ -46,22 +80,6 @@
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="fas fa-users"></i>
-                        <span>Клиенты</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li>
-                                <a href="#">Список клиентов</a>
-                            </li>
-                            <li>
-                                <a href="#">Добавить нового клиента</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="sidebar-dropdown">
-                    <a href="#">
                         <i class="fa fa-chart-line"></i>
                         <span>Статистика</span>
                     </a>
@@ -75,22 +93,6 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-                @if(Auth::user()->hasRole('superadministrator'))
-                <li class="header-menu">
-                    <span>Администратирование</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-users-cog"></i>
-                        <span>Управление менеджерами</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <span>Прайс</span>
-                    </a>
                 </li>
                 @endif
             </ul>

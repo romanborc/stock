@@ -10,37 +10,57 @@
             </i>
         </a>
     </div>
-
     <input class="form-control form-control-sm search" type="text" placeholder="Поиск товара...">
     <br>
-    <div class="table-responsive-sm">
-        <table class="table table-sm table-striped table-bordered">
+    <div class="table-responsive-sm table-product">
+        <table class="table table-sm table-hover table-bordered price-product">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col" class="thead">#</th>
+                    <th scope="col" class="thead">Наименование</th>
+                    <th scope="col" class="thead">Доступный остаток</th>
+                    <th scope="col" class="thead">Опт</th>
+                    <th scope="col" class="thead">Интернет</th>
+                    <th scope="col" class="thead">Единая</th>
+                    <th scope="col" class="thead th_quantity">В заказ</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td>Дезінфікуючий засіб з гарними миючими властивостями</td>
+                    <td>120</td>
+                    <td>140.12</td>
+                    <td>130.00</td>
+                    <td>160.54</td>
+                    <td>
+                        <input type="number" class="qantity">
+                        <a href="#"><i class="fa fa-plus"></i></a>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <td>Дезінфікуючий засіб з гарними миючими властивостями Аеродезин з гарними миючими властивостями</td>
+                    <td>120</td>
+                    <td>140.12</td>
+                    <td>130.00</td>
+                    <td>160.54</td>
+                    <td>
+                        <input type="number" class="qantity">
+                        <a href="#"><i class="fa fa-plus"></i></a>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <td>Дезінфікуючий засіб з гарними миючими властивостями</td>
+                    <td>120</td>
+                    <td>140.12</td>
+                    <td>130.00</td>
+                    <td>160.54</td>
+                    <td>
+                        <input type="number" class="qantity">
+                        <a href="#"><i class="fa fa-plus"></i></a>
+                    </td>
                 </tr>
             </tbody>
         </table>
