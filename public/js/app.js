@@ -37342,25 +37342,38 @@ function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!data) {
-                  console.log('test');
+                _context.prev = 0;
+
+                if (data) {
+                  _context.next = 3;
+                  break;
                 }
 
+                throw new SyntaxError("Некорректны данные");
+
+              case 3:
                 category = {
                   'name': data
                 };
-                _context.next = 4;
+                _context.next = 6;
                 return this.model.post("".concat(this.url, "/api/prices"), category);
 
-              case 4:
+              case 6:
                 this.show();
+                _context.next = 12;
+                break;
 
-              case 5:
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](0);
+                alert(_context.t0);
+
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[0, 9]]);
       }));
 
       function store(_x) {
