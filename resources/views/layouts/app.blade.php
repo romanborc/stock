@@ -31,10 +31,6 @@
         <main class="page-content">
             @yield('content')
         </main>
-        
-        <!-- Include Modal -->
-        @include('_includes.modals.price_category')
-        @include('_includes.modals.product')
 
     </div>
 </body>

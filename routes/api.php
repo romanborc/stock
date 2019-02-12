@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->group(function() {
     Route::get('/prices', 'Api\PriceCategoryController@index');
     Route::post('/prices', 'Api\PriceCategoryController@store');
+    Route::delete('/prices/{id}', 'Api\PriceCategoryController@destroy');
 });

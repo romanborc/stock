@@ -63,7 +63,7 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole\CheckRole::class,
     ];
 
-    /**
+    /**`
      * The priority-sorted list of middleware.
      *
      * This forces non-global middleware to always be in the given order.

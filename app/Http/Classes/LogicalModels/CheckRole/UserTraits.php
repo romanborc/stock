@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Classes\Logical\CheckRole;
+namespace App\Http\Classes\LogicalModels\CheckRole;
 
 trait UserTraits
 {

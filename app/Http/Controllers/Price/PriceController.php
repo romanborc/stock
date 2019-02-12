@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PriceCategory;
 
+use App\Http\Requests\Product\ProductStore;
+use App\Http\Classes\LogicalModels\ProductRequest\CreateProductWithPricesRequest;
+
 class PriceController extends Controller
 {
     /**
@@ -14,9 +17,11 @@ class PriceController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
+    public function __construct(CreateProductWithPricesRequest $request)
     {
         $this->middleware('auth');
+        $this->request = $request;
+
     }
 
     public function index()
@@ -41,9 +46,9 @@ class PriceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductStore $request)
     {
-        //
+        $this->request->storeProductWithPrices($request);
     }
 
     /**

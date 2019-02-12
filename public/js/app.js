@@ -37327,25 +37327,60 @@ function () {
       return _this.store(e);
     });
     view.on('show_price_category', function (e) {
-      return _this.show(e);
+      return _this.index(e);
+    });
+    view.on('delete_price_category', function (e) {
+      return _this.delete(e);
     });
   }
 
   _createClass(PriceCategoryController, [{
-    key: "store",
+    key: "index",
     value: function () {
-      var _store = _asyncToGenerator(
+      var _index = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(data) {
-        var category;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
+                _context.next = 2;
+                return this.model.get("".concat(this.url, "/api/prices"));
+
+              case 2:
+                response = _context.sent;
+                this.view.show(response.data);
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function index() {
+        return _index.apply(this, arguments);
+      }
+
+      return index;
+    }()
+  }, {
+    key: "store",
+    value: function () {
+      var _store = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(data) {
+        var category;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
 
                 if (data) {
-                  _context.next = 3;
+                  _context2.next = 3;
                   break;
                 }
 
@@ -37355,25 +37390,25 @@ function () {
                 category = {
                   'name': data
                 };
-                _context.next = 6;
+                _context2.next = 6;
                 return this.model.post("".concat(this.url, "/api/prices"), category);
 
               case 6:
-                this.show();
-                _context.next = 12;
+                this.index();
+                _context2.next = 12;
                 break;
 
               case 9:
-                _context.prev = 9;
-                _context.t0 = _context["catch"](0);
-                alert(_context.t0);
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](0);
+                alert(_context2.t0);
 
               case 12:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this, [[0, 9]]);
+        }, _callee2, this, [[0, 9]]);
       }));
 
       function store(_x) {
@@ -37383,36 +37418,34 @@ function () {
       return store;
     }()
   }, {
-    key: "show",
+    key: "delete",
     value: function () {
-      var _show = _asyncToGenerator(
+      var _delete2 = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(data) {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.next = 2;
-                return this.model.get("".concat(this.url, "/api/prices"));
+                _context3.next = 2;
+                return this.model.delete("".concat(this.url, "/api/prices/") + id);
 
               case 2:
-                response = _context2.sent;
-                this.view.show(response.data);
+                this.index();
 
-              case 4:
+              case 3:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
-      function show(_x2) {
-        return _show.apply(this, arguments);
+      function _delete(_x2) {
+        return _delete2.apply(this, arguments);
       }
 
-      return show;
+      return _delete;
     }()
   }]);
 
@@ -37623,6 +37656,57 @@ function () {
 
       return get;
     }()
+  }, {
+    key: "delete",
+    value: function () {
+      var _delete2 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(url) {
+        var response, resData;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return fetch(url, {
+                  method: 'DELETE',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + $('meta[name="api_token"]').attr('content')
+                  }
+                });
+
+              case 3:
+                response = _context3.sent;
+                _context3.next = 6;
+                return response.json();
+
+              case 6:
+                resData = _context3.sent;
+                console.log(resData);
+                return _context3.abrupt("return", resData);
+
+              case 11:
+                _context3.prev = 11;
+                _context3.t0 = _context3["catch"](0);
+                throw new Error("Невозможно удалить данные");
+
+              case 14:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[0, 11]]);
+      }));
+
+      function _delete(_x4) {
+        return _delete2.apply(this, arguments);
+      }
+
+      return _delete;
+    }()
   }]);
 
   return Http;
@@ -37709,6 +37793,9 @@ function (_EventEmmiter) {
     $('#show_price_category').click(function (e) {
       return _this.handleShow(e);
     });
+    $(document).on('click', '#delete_price_category', function (e) {
+      return _this.handleDelete(e);
+    });
     $('#close_modal_price_categories').click(function (e) {
       return _this.reloadPage();
     });
@@ -37733,8 +37820,14 @@ function (_EventEmmiter) {
       $('.price_categories tr').remove();
       $('.price_category').val('');
       $.each(priceCategories, function (i, e) {
-        $('.price_categories').append("\n            <tr>  \n              <td>".concat(e.name, "</td>\n              <td>\n                <a href=\"#\" class=\"mr-2\"><i class=\"far fa-edit fa-lg\"></i></a>\n                <a href=\"#\"><i class=\"far fa-trash-alt fa-lg\"></i></a>\n              </td>\n            </tr>\n          "));
+        $('.price_categories').append("\n            <tr>  \n              <td>".concat(e.name, "</td>\n              <td>\n                <a href=\"#\" id=\"delete_price_category\" data-id=\"").concat(e.id, "\"><i class=\"far fa-trash-alt fa-lg\" data-id=\"").concat(e.id, "\"></i></a>\n              </td>\n            </tr>\n          "));
       });
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(event) {
+      var id = $(event.currentTarget).data('id');
+      this.emit('delete_price_category', id);
     }
   }, {
     key: "reloadPage",

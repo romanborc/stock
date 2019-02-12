@@ -4,6 +4,8 @@ class PriceView extends EventEmmiter {
         super();
         $('#create_price_category').click((e) => this.handleAdd(e));
         $('#show_price_category').click((e) => this.handleShow(e));
+        $(document).on('click', '#delete_price_category', (e) => this.handleDelete(e));
+        
         $('#close_modal_price_categories').click((e) => this.reloadPage());
     }
 
@@ -16,7 +18,6 @@ class PriceView extends EventEmmiter {
         this.emit('show_price_category');
     }
 
-
     show(data) {
         const priceCategories = data.data;
         $('.price_categories tr').remove();
@@ -26,17 +27,24 @@ class PriceView extends EventEmmiter {
             <tr>  
               <td>${e.name}</td>
               <td>
-                <a href="#" class="mr-2"><i class="far fa-edit fa-lg"></i></a>
-                <a href="#"><i class="far fa-trash-alt fa-lg"></i></a>
+                <a href="#" id="delete_price_category" data-id="${e.id}"><i class="far fa-trash-alt fa-lg" data-id="${e.id}"></i></a>
               </td>
             </tr>
           `);
         });
     }
 
+    handleDelete(event) {
+      const id = $(event.currentTarget).data('id');
+      this.emit('delete_price_category', id);
+      
+    }
+
     reloadPage() {
         location.reload();
     }
+
+
 }
 
 export default PriceView;

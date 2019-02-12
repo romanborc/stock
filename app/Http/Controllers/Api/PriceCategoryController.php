@@ -19,12 +19,21 @@ class PriceCategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->json()->all();
-        $priceCategory = PriceCategory::create([
+        PriceCategory::create([
             'name' => $data['name']
         ]);
         
         return response([
             'data' => new PriceCategoryResourse(PriceCategory::all())
         ]);
+    }
+
+    public function destroy(Request $request)
+    {
+        $category = PriceCategory::findOrFail($request->id);
+        $category->delete();
+
+        return response(200);
+
     }
 }

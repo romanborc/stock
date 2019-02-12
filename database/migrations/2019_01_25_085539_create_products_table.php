@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name', 255)->unique();
             $table->mediumInteger('quantity');
             $table->mediumInteger('reserve');
+            $table->mediumInteger('marriage');
 
             $table->unsignedInteger('product_category_id');
             $table->foreign('product_category_id')->references('id')->on('product_categories');

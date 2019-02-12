@@ -5,7 +5,13 @@ class PriceCategoryController {
         this.view = view;
 
         view.on('store_price_category', (e) => this.store(e));
-        view.on('show_price_category', (e) => this.show(e));
+        view.on('show_price_category', (e) => this.index(e));
+        view.on('delete_price_category', (e) => this.delete(e));
+    }
+
+    async index() {
+        const response = await this.model.get(`${this.url}/api/prices`);
+        this.view.show(response.data);
     }
 
     async store(data) {
@@ -17,17 +23,18 @@ class PriceCategoryController {
                 'name': data,
             }
             await this.model.post(`${this.url}/api/prices`, category);
-            this.show();
+            this.index();
         } catch (e) {
             alert(e);
 
         }
-      }
-        async show(data) {
-            const response = await this.model.get(`${this.url}/api/prices`);
-            this.view.show(response.data);
-        }
-
     }
 
-    export default PriceCategoryController;
+    async delete(id) {
+        await this.model.delete(`${this.url}/api/prices/` + id);
+        this.index();
+    }
+
+}
+
+export default PriceCategoryController;

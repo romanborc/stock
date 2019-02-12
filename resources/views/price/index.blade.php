@@ -44,4 +44,9 @@
         </table>
     </div>
 </div>
+
+<!-- Include Modal -->
+@include('_includes.modals.price_category')
+@include('_includes.modals.product')
+
 @endsection
