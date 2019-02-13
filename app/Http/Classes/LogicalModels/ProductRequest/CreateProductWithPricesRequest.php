@@ -2,32 +2,27 @@
 
 namespace App\Http\Classes\LogicalModels\ProductRequest;
 
+use Illuminate\Support\Facades\DB;
 
 class CreateProductWithPricesRequest
 {
-    private $product;
+    private $request;
 
-
-    public function __construct(ProductWithPricesRequest $product)
+    public function __construct(ProductWithPricesRequest $request)
     {
-        $this->product = $product;
+        $this->request = $request;
     }
 
-    public function storeProductWithPrices($request)
+    public function storeProductWithPrices($validDataForm)
     {
-        //Add DB::beginTransaction();
+        DB::beginTransaction();
         try {
-            $this->product->storeProduct($request);
-            $this->product->storePrices($request);
+            $this->request->insertProductOrException($validDataForm);
+            $this->request->insertPricesOrException($validDataForm);
+            DB::commit();
         } catch (\Exception $e) {
+            DB::rollBack();
             throw new \RuntimeException($e->getMessage());
         }
-
     }
-
-
-
-
-
-
 }

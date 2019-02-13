@@ -3,7 +3,7 @@ namespace App\Http\Classes\LogicalModels\ProductRequest;
 
 interface ProductWithPricesRequestImp
 {
-    public function storeProduct($data);
-    public function storePrices($data);
+    public function insertProductOrException($validDataForm);
+    public function insertPricesOrException($validDataForm);
 }
 

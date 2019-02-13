@@ -8,13 +8,13 @@ use http\Exception\RuntimeException;
 
 class ProductWithPricesRequest implements ProductWithPricesRequestImp
 {
-    public function storeProduct($request)
+    public function insertProductOrException($dataForm)
     {
         try {
             Product::create([
-                'name' => $request->name,
-                'quantity' => $request->quantity,
-                'reserve' => $request->reserve,
+                'name' => $dataForm->name,
+                'quantity' => $dataForm->quantity,
+                'reserve' => $dataForm->reserve,
 
             ]);
         } catch (\Exception $e) {
@@ -22,11 +22,11 @@ class ProductWithPricesRequest implements ProductWithPricesRequestImp
         }
     }
 
-    public function storePrices($request)
+    public function insertPricesOrException($dataForm)
     {
         try {
             $product_id = Product::pluck('id')->last();
-            foreach ($request->prices as $price)
+            foreach ($dataForm->prices as $price)
             {
                 Price::create([
                     'price' => $price['price'],
