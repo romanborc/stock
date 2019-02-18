@@ -1,29 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Price;
+namespace App\Http\Controllers\Product;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PriceCategory;
-
+use App\Http\Classes\Logical\Product\CreateRequest\CreateRequest;
 use App\Http\Requests\Product\ProductStore;
-use App\Http\Classes\LogicalModels\ProductRequest\CreateProductWithPricesRequest;
+use Illuminate\Support\Facades\Input;
 
-class PriceController extends Controller
+class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $request;
 
-    public function __construct(CreateProductWithPricesRequest $request)
+    public function __construct(CreateRequest $request)
     {
         $this->middleware('auth');
         $this->request = $request;
 
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $priceCategories = PriceCategory::all();
@@ -31,24 +32,24 @@ class PriceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(ProductStore $request)
+    public function store()
     {
-        $this->request->storeProductWithPrices($request);
+        $dataInput = Input::all();
+
+        if($this->request->validator($dataInput)->fails()) {
+            return redirect()->route('price')->withErrors($this->request->validator($dataInput)->errors())->withInput();
+        }
+
+        try {
+            $this->request->insertProductWithPrices($dataInput);
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->route('price')->withErrors('Ошибка базы данных');
+        }
+
     }
 
     /**

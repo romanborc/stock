@@ -16,6 +16,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::middleware('role:superadministrator|administarator')->group(function() {
-    Route::get('/price', 'Price\PriceController@index')->name('price');
-    Route::post('/products', 'Price\PriceController@store');
+    Route::get('/price', 'Product\ProductController@index')->name('price');
+    Route::post('/products', 'Product\ProductController@store');
 });

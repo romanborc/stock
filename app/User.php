@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Http\Classes\LogicalModels\CheckRole\UserTraits;
+use App\Http\Classes\Logical\CheckRole\UserTraits;
 
 class User extends Authenticatable
 {

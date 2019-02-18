@@ -25,10 +25,10 @@ class ProductStore extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'quantity' => 'required|max:10',
-            'reserve' => 'max:10',
-            'marriage' => 'max:10',
-            'details.*.price' => 'max:10',
+            'quantity' => 'required|max:3',
+            'reserve' => 'max:3',
+            'marriage' => 'max:3',
+            'details.*.price' => 'max:3',
 
         ];
     }

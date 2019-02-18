@@ -38,10 +38,10 @@
                     <hr>
                     @forelse($priceCategories as $category)
                     <div class="form-group">
-                        <label for="reserve">Ценовая категория - {{ $category->name }}</label>
-                        <input type="hidden" name="prices[{{ $loop->iteration  }}][price_category_id]" value="{{ $category->id  }}">
-                        <input type="number" class="form-control form-control-sm" id="price_category" name="prices[{{ $loop->iteration   }}][price]" placeholder="Введите цену данной категории">
-                    </div>
+                            <label for="reserve">Ценовая категория - {{ $category->name }}</label>
+                            <input type="hidden" name="prices[{{ $loop->iteration  }}][price_category_id]" value="{{ $category->id  }}">
+                            <input type="number" class="form-control form-control-sm" id="price_category" name="prices[{{ $loop->iteration   }}][price]" placeholder="Введите цену данной категории">
+                        </div>
                     @empty
                     <h5>На данный момент нет ни одной ценовой категории</h5>
                     @endforelse
